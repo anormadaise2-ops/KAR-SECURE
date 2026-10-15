@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAR SECURE | Installation</title>
+<style>
+:root {
+  --bg: #050816;
+  --panel: rgba(15, 25, 52, .85);
+  --cyan: #00f0ff;
+  --blue: #6574ff;
+  --text: #eaf7ff;
+  --muted: #9cb2d4;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%, #17285b 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 100%, #102b45 0%, transparent 45%),
+    var(--bg);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  background-image:
+    linear-gradient(rgba(0,240,255,.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,240,255,.16) 1px, transparent 1px);
+  background-size: 35px 35px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+.app {
+  position: relative;
+  width: min(1000px, 96vw);
+  height: min(680px, 95vh);
+  margin: 2.5vh auto;
+  display: grid;
+  grid-template-rows: 74px 1fr 76px;
+  border: 1px solid rgba(0,240,255,.38);
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(5, 10, 28, .87);
+  box-shadow: 0 0 60px #00d9ff17, inset 0 0 35px #3558ff0c;
+  backdrop-filter: blur(18px);
+}
+header, footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: #0a1229c9;
+  border-bottom: 1px solid #203b60;
+}
+footer {
+  border-bottom: 0;
+  border-top: 1px solid #203b60;
+}
+.brand {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+.brand span { color: var(--cyan); }
+.badge {
+  color: var(--cyan);
+  border: 1px solid #00f0ff55;
+  border-radius: 30px;
+  padding: 8px 12px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+main {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  min-height: 0;
+}
+.robot-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #203b60;
+  overflow: hidden;
+}
+.orbit {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border: 1px solid #00eaff45;
+  border-radius: 50%;
+  transform: rotateX(68deg);
+  animation: spin 12s linear infinite;
+  box-shadow: 0 0 20px #00eaff10;
+}
+.orbit.two {
+  width: 210px;
+  height: 210px;
+  transform: rotateX(68deg) rotateZ(60deg);
+  animation-duration: 8s;
+  border-color: #6678ff66;
+}
+@keyframes spin { to { rotate: 360deg; } }
+.robot {
+  position: relative;
+  width: 190px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 18px #00d9ff45);
+  animation: float 3s ease-in-out infinite;
+  z-index: 2;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0) rotateY(-5deg); }
+  50% { transform: translateY(-12px) rotateY(5deg); }
+}
+.robot-head {
+  width: 142px;
+  height: 112px;
+  position: relative;
+  border: 2px solid #4cecff;
+  border-radius: 35px 35px 28px 28px;
+  background: linear-gradient(145deg,#344c76,#101b36 60%,#263b60);
+  box-shadow: inset 0 0 25px #00eaff22, 5px 8px 0 #080e20;
+}
+.robot-head::before, .robot-head::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 28px;
+  top: 35px;
+  background: #00eaff;
+  border-radius: 6px;
+  box-shadow: 0 0 15px #00eaff;
+}
+.robot-head::before { left: 27px; }
+.robot-head::after { right: 27px; }
+.eyes {
+  position: absolute;
+  width: 17px;
+  height: 9px;
+  top: 44px;
+  left: 61px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 0 18px #00eaff;
+}
+.robot-mouth {
+  position: absolute;
+  width: 38px;
+  height: 4px;
+  left: 50px;
+  bottom: 22px;
+  border-radius: 5px;
+  background: #00eaff;
+  box-shadow: 0 0 12px #00eaff;
+}
+.robot-neck {
+  width: 43px;
+  height: 15px;
+  background: #203a5b;
+  border-left: 2px solid #00eaff;
+  border-right: 2px solid #00eaff;
+}
+.robot-body {
+  width: 118px;
+  height: 75px;
+  border: 2px solid #4cecff;
+  border-radius: 20px 20px 30px 30px;
+  background: linear-gradient(145deg,#273f66,#0c1731);
+  display: grid;
+  place-items: center;
+}
+.core {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #00eaff;
+  background: radial-gradient(circle,#fff,#00eaff 35%,#173b77 70%);
+  box-shadow: 0 0 25px #00eaff;
+  animation: pulse 1.5s infinite alternate;
+}
+@keyframes pulse {
+  from { transform: scale(.85); opacity: .7; }
+  to { transform: scale(1.1); opacity: 1; }
+}
+.robot-name {
+  margin-top: 24px;
+  color: var(--cyan);
+  letter-spacing: 4px;
+  font-weight: 800;
+}
+.robot-status {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #93abc9;
+}
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #32ffb0;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 10px #32ffb0;
+}
+.content {
+  padding: 38px 38px 24px;
+  overflow-y: auto;
+}
+.eyebrow {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+h1 {
+  font-size: clamp(27px,3vw,39px);
+  line-height: 1.12;
+  margin: 15px 0;
+}
+h1 span { color: var(--cyan); }
+.description {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 14px;
+}
+.card {
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid #29466b;
+  border-radius: 14px;
+  background: var(--panel);
+}
+.card-title {
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.option {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  color: #dcecff;
+  font-size: 13px;
+  cursor: pointer;
+}
+.option + .option { border-top: 1px solid #233650; }
+input[type=checkbox] {
+  accent-color: #00eaff;
+  width: 17px;
+  height: 17px;
+}
+.path {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #2d4b70;
+  border-radius: 8px;
+  background: #071126;
+  color: white;
+  outline: none;
+}
+.path:focus { border-color: var(--cyan); }
+.tip {
+  margin-top: 15px;
+  font-size: 11px;
+  color: #8199b9;
+  line-height: 1.6;
+}
+button {
+  border: 1px solid #00eaff;
+  border-radius: 9px;
+  padding: 13px 19px;
+  background: linear-gradient(120deg,#00bcd4,#5d65ff);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 0 20px #00d9ff20;
+  transition: transform .2s, filter .2s;
+}
+button:hover { transform: translateY(-2px); filter: brightness(1.2); }
+button.secondary {
+  color: #c4d5ee;
+  background: #101b31;
+  border-color: #304666;
+  box-shadow: none;
+}
+.progress-wrap { margin-top: 20px; display: none; }
+.progress-track {
+  height: 6px;
+  background: #1b2b47;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg,#00eaff,#6675ff);
+  box-shadow: 0 0 12px #00eaff;
+  transition: width .35s;
+}
+.progress-text {
+  color: var(--cyan);
+  font-size: 11px;
+  margin-top: 9px;
+}
+footer small { color: #7d92b2; font-size: 11px; }
+@media(max-width:700px) {
+  body { overflow:auto; }
+  .app { height:auto; min-height:95vh; grid-template-rows:65px auto 70px; }
+  main { grid-template-columns:1fr; }
+  .robot-panel { min-height:300px; border-right:0; border-bottom:1px solid #203b60; }
+  .robot { transform:scale(.8); }
+  .content { padding:25px 20px; }
+  header,footer { padding:0 15px; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">KAR <span>SECURE</span></div>
+    <div class="badge">ZERCRAFT // INSTALLER</div>
+  </header>
+
+  <main>
+    <section class="robot-panel">
+      <div class="orbit"></div>
+      <div class="orbit two"></div>
+      <div class="robot" aria-label="Robot assistant stylise">
+        <div class="robot-head">
+          <div class="eyes"></div>
+          <div class="robot-mouth"></div>
+        </div>
+        <div class="robot-neck"></div>
+        <div class="robot-body"><div class="core"></div></div>
+      </div>
+      <div class="robot-name">KAR-BOT</div>
+      <div class="robot-status"><span class="status-dot"></span>ASSISTANT PRET</div>
+    </section>
+
+    <section class="content">
+      <div class="eyebrow">INITIALISATION DU SYSTEME</div>
+      <h1>Ton PC.<br><span>Ta securite.</span><br>Ton controle.</h1>
+      <p class="description">
+        Bienvenue dans l'installation de KAR SECURE.
+        Personnalise ton installation avant de continuer.
+      </p>
+
+      <div class="card">
+        <div class="card-title">01 / CONFIGURATION</div>
+        <label class="option">
+          <input type="checkbox" id="desktop" checked>
+          Creer un raccourci sur le Bureau
+        </label>
+        <label class="option">
+          <input type="checkbox" id="start" checked>
+          Ajouter au menu Demarrer
+        </label>
+        <label class="option">
+          <input type="checkbox" id="launch">
+          Lancer KAR SECURE apres l'installation
+        </label>
+
+        <label for="installPath" class="card-title" style="display:block;margin-top:18px">
+          02 / DOSSIER D'INSTALLATION
+        </label>
+        <input id="installPath" class="path" value="C:\Program Files\KAR SECURE">
+        <div class="tip">
+          Les acces systeme sont geres par Windows. L'assistant ne demande
+          pas de mot de passe et ne modifie aucune autorisation sans action explicite.
+        </div>
+      </div>
+
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-text" id="progressText">Preparation...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>© ZERCRAFT — KAR SECURE</small>
+    <div style="display:flex;gap:10px">
+      <button class="secondary" id="cancel">Fermer</button>
+      <button id="continue">CONTINUER →</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+const continueButton = document.getElementById("continue");
+const cancelButton = document.getElementById("cancel");
+const progressWrap = document.getElementById("progressWrap");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+
+continueButton.addEventListener("click", async () => {
+  const options = {
+    desktop: document.getElementById("desktop").checked,
+    startMenu: document.getElementById("start").checked,
+    launch: document.getElementById("launch").checked,
+    installPath: document.getElementById("installPath").value.trim()
+  };
+
+  if (!options.installPath) {
+    alert("Choisis un dossier d'installation.");
+    return;
+  }
+
+  if (window.karInstaller) {
+    continueButton.disabled = true;
+    progressWrap.style.display = "block";
+    progressText.textContent = "Transmission des options...";
+    try {
+      const result = await window.karInstaller.configure(options);
+      progressText.textContent = result.message || "Configuration transmise.";
+      progressBar.style.width = "100%";
+    } catch (error) {
+      progressText.textContent = "Erreur : " + error.message;
+      continueButton.disabled = false;
+    }
+  } else {
+    progressWrap.style.display = "block";
+    progressText.textContent =
+      "Aperçu de l'interface uniquement : aucun programme n'est installé depuis cette page.";
+    progressBar.style.width = "100%";
+  }
+});
+
+cancelButton.addEventListener("click", async () => {
+  if (window.karInstaller) {
+    await window.karInstaller.close();
+  } else {
+    document.body.innerHTML =
+      "<h2 style='color:#00eaff;text-align:center;margin-top:20vh'>KAR SECURE — Aperçu fermé</h2>";
+  }
+});
+</script>
+</body>
+</html>

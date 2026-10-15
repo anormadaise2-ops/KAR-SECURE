@@ -1,0 +1,57 @@
+{
+  "name": "kar-secure",
+  "version": "1.0.0",
+  "description": "KAR SECURE - Diagnostic et securite systeme par Zercraft",
+  "main": "src/main.js",
+  "author": "Zercraft",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "zip": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-zip.ps1",
+    "dist": "electron-builder --win nsis",
+    "installer-preview": "electron installer-ui/main.cjs"
+  },
+  "dependencies": {
+    "systeminformation": "^5.27.11"
+  },
+  "devDependencies": {
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.zercraft.karsecure",
+    "productName": "KAR SECURE",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": false,
+      "shortcutName": "KAR SECURE",
+      "include": "build/installer.nsh",
+      "runAfterFinish": false
+    }
+  },
+  "allowScripts": {
+    "electron@39.8.10": true,
+    "electron-winstaller@5.4.0": true
+  }
+}
